@@ -5,20 +5,16 @@ class Solution {
 
         int left = 0;
         int right = n - 1;
-        int index = n - 1;
 
-        while (left <= right) {
-            int leftSquare = nums[left] * nums[left];
-            int rightSquare = nums[right] * nums[right];
-
-            if (leftSquare > rightSquare) {
-                result[index] = leftSquare;
+        // Fill the result array from the largest square to smallest
+        for (int i = n - 1; i >= 0; i--) {
+            if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+                result[i] = nums[left] * nums[left];
                 left++;
             } else {
-                result[index] = rightSquare;
+                result[i] = nums[right] * nums[right];
                 right--;
             }
-            index--;
         }
 
         return result;
